@@ -18,7 +18,7 @@ Navigate to the AWS Secrets Manager, choose to store a new key/value secret sele
 <hr>
 
 ## Create AWS IAM users, roles and policies
-AWS is quite strict about privileges, which is a good thing. The bad thing is that it can be quite chaotic to face this amount of complexity for the first time.
+AWS is quite strict about privileges, which is a good thing. The bad thing is that it can be quite chaotic to face this amount of complexity the first time.
 Head to the AWS IAM panel to start this journey.
 
 
