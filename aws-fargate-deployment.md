@@ -44,6 +44,24 @@ You can give this role the default name "ecsTaskExecutionRole", review, and crea
 
 <hr>
 
+## AWS ECS
+
+### Create a cluster
+From the AWS ECS control panel, select Clusters and click on "Create Cluster". Select the "networking only" mode that is powered by Fargate. Give a name to the cluster and select "Create VPC", which is a Virtual Private Cloud that contains a logically isolated section where you to launch AWS resources. Leave the default values and end by clicking create.
+
+### Create a Task Definition
+From the AWS ECS control panel, select Task Definitions and click on "Create new Task Definition". Here, select Fargate to power your app. Name the new task, then, under "task role" select the default role "ecsTaskExecutionRole", which has the right set of privileges to run ECS tasks. 
+
+Below, under "Task execution IAM role", select "ecsTaskExecutionRole" again. If you followed the guide correctly, this role has the necessary privileges to pull the container images of you apps.
+
+Select the task memory size and the CPU power for the task, which should include the total memory and CPU power needed to run all of your containers. You can choose how to distribute these resources in the next step.
+
+Now, select "add container" to add the images of your containers. Give the container a name, and under "image" paste the link to your hosted image (e.g. docker.pkg.github.com/user/repo-name/image-name:1.0.0 for Github Packages). Tick the box next to "private repository authentication" and paste the ARN of the Secret Manager, which you can get if you navigate to the AWS Secret Manager and click on the name of your secret.
+Set a memory soft limit and add the ports of the container that need to be accessible. Leave everything else as is and click "add". Repeat the process for your other containers.
+
+
+<hr>
+
 ## Add an Application Load Balancer
 ...
 
