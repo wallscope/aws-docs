@@ -48,10 +48,18 @@ You can give this role the default name "ecsTaskExecutionRole", review, and crea
 
 TODO: write about creating a VPC and subnets (both need to be created individually, subnets need to belong to VPC)
 
+1 - Create vpc
+2 - create and attach 2 subnets to vpc
+3 - create internet gateway to allow network to pull images from the internet
+4 - find vpc route table, go to routes, then edit routes. Add a route with destination 0.0.0.0/0 and with target the newly created internet gateway.
+
 <hr>
 
 ## Add an Application Load Balancer (Optional)
-...
+Head to the AWS EC2 control panel. From the left menu select "load balancer" under "load balancing", then click on "create load balancer". Pick Application Load Balancer for your Fargate deployment.
+
+Give a name to your load balancer. Under Listeners, add a HTTP listener on port 80 if not already present; then, add a HTTPS listener on port 443.
+
 
 <hr>
 
