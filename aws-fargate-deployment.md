@@ -45,9 +45,6 @@ You can give this role the default name "ecsTaskExecutionRole", review, and crea
 <hr>
 
 ## Create a VPC
-
-TODO: write about creating a VPC and subnets (both need to be created individually, subnets need to belong to VPC)
-
 1. Create vpc with CIDR ending in /16 to obtain a network with range of addresses from x.x.0.0 to x.x.255.255
 2. create and attach 2 subnets to vpc, with subnets CIDR blocks 10.0.0.0/24 and 10.0.1.0/24
 3. create internet gateway to allow network to pull images from the internet
@@ -59,8 +56,14 @@ TODO: write about creating a VPC and subnets (both need to be created individual
 ## Add an Application Load Balancer (Optional)
 Head to the AWS EC2 control panel. From the left menu select "load balancer" under "load balancing", then click on "create load balancer". Pick Application Load Balancer for your Fargate deployment.
 
-Give a name to your load balancer. Under Listeners, add a HTTP listener on port 80 if not already present; then, add a HTTPS listener on port 443.
+Give a name to your load balancer. Under Listeners, add a HTTP listener on port 80 if not already present; then, add a HTTPS listener on port 443. Select the previously created VPC and subnets. Optionally, add an AWS Global Accelerator to give your load balancer a static IP.
 
+To configure HTTPS, you need to add a TLS/SSL certificate to the AWS Certificate Manager. To do this, open the AWS CM control panel in a new tab, then select "request new certificate". Here, select to request a public certificate and add a list of domain names. Typically, these would be:
+- `domain_name.com`
+- `www.domain_name.com`
+
+If you also want a wildcard certificate to cover your subdomains, add to these:
+- `*.domain_name.com`
 
 <hr>
 
