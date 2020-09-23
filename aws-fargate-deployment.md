@@ -49,9 +49,10 @@ You can give this role the default name "ecsTaskExecutionRole", review, and crea
 TODO: write about creating a VPC and subnets (both need to be created individually, subnets need to belong to VPC)
 
 1 - Create vpc with CIDR ending in /16 to obtain a network with range of addresses from x.x.0.0 to x.x.255.255
-2 - create and attach 2 subnets to vpc
+2 - create and attach 2 subnets to vpc, with subnets CIDR blocks 10.0.0.0/24 and 10.0.1.0/24
 3 - create internet gateway to allow network to pull images from the internet
-4 - find vpc route table, go to routes, then edit routes. Add a route with destination 0.0.0.0/0 and with target the newly created internet gateway.
+4 - attach internet gateway to vpc from the internet gateway control panel
+5 - find vpc route table, go to routes, then edit routes. Add a route with destination 0.0.0.0/0 and with target the newly created internet gateway.
 
 <hr>
 
