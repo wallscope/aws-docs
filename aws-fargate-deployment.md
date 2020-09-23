@@ -54,16 +54,30 @@ You can give this role the default name "ecsTaskExecutionRole", review, and crea
 <hr>
 
 ## Add an Application Load Balancer (Optional)
-Head to the AWS EC2 control panel. From the left menu select "load balancer" under "load balancing", then click on "create load balancer". Pick Application Load Balancer for your Fargate deployment.
-
-Give a name to your load balancer. Under Listeners, add a HTTP listener on port 80 if not already present; then, add a HTTPS listener on port 443. Select the previously created VPC and subnets. Optionally, add an AWS Global Accelerator to give your load balancer a static IP.
-
-To configure HTTPS, you need to add a TLS/SSL certificate to the AWS Certificate Manager. To do this, open the AWS CM control panel in a new tab, then select "request new certificate". Here, select to request a public certificate and add a list of domain names. Typically, these would be:
+To configure HTTPS on your load balancer, you first need to add a TLS/SSL certificate to the AWS Certificate Manager. To do this, open the AWS CM control panel in a new tab, then select "request new certificate". Here, select to request a public certificate and add a list of domain names. Typically, these would be:
 - `domain_name.com`
 - `www.domain_name.com`
 
 If you also want a wildcard certificate to cover your subdomains, add to these:
 - `*.domain_name.com`
+
+Finally, you will need to add the DNS record shown to your domain.
+
+<br>
+
+To create a load balancer head to the AWS EC2 control panel. From the left menu select "load balancer" under "load balancing", then click on "create load balancer". Pick Application Load Balancer for your Fargate deployment.
+
+Give a name to your load balancer. Under Listeners, add a HTTP listener on port 80 if not already present; then, add a HTTPS listener on port 443. Select the previously created VPC and subnets. Optionally, add an AWS Global Accelerator to give your load balancer a static IP. Next, choose the certificate previously created. 
+
+Then, you can create a new security group which will allow traffic (generally through TCP) on specific ports. To allow your apps to be access via the internet, select the ports to expose (e.g. 80 and 443 for the frontend, 5000 for the backend etc.); under source, select "Anywhere".
+
+Next, under target group select "new target group", give it a name, and select "IP" as target type. Leave the rest as is. Proceed until you reach the end of the creation process.
+
+You will see the newly created load balancer under the load balancer control panel list. Select it, under descripiton you will see the DNS name assigned to the load balancer. Under the "integrated services" tab you will find the load balancer static IP addresses provided by the global accelerator.  
+
+### Force HTTPS
+ Select your load balancer and go to the Listeners tab. In the HTTP row select "View/edit rules". In the top menu, click the pencil to enter edit mode. Then click on the pencil next to the HTTP row to edit this specific rule. In the "Then" column, delete the pre-existing value. Add a new "Redirect to" action that redirects on HTTPS on port 443. Click the tick to save and update at the top. 
+
 
 <hr>
 
