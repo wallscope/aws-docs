@@ -53,7 +53,7 @@ You can give this role the default name "ecsTaskExecutionRole", review, and crea
 
 <hr>
 
-## Add an Application Load Balancer (Opitonal but necessary for HTTPS)
+## Add an Application Load Balancer (Optional but necessary for HTTPS)
 To configure HTTPS on your load balancer, you first need to add a TLS/SSL certificate to the AWS Certificate Manager. To do this, open the AWS CM control panel in a new tab, then select "request new certificate". Here, select to request a public certificate and add a list of domain names. Typically, these would be:
 - `domain_name.com`
 - `www.domain_name.com`
