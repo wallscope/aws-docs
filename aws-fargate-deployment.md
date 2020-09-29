@@ -7,7 +7,7 @@ For ease of deployment and continuous integration's sake, dockerize your apps an
 <hr>
 
 ## Add a Docker private registry secret
-To allow AWS to access your private image registry, you need to add an access token to AWS Secrets Manager. Let's see how to create these first.
+To allow AWS to access your private image registry, you need to add an access token to AWS Secrets Manager. Let's see how to create this first.
 
 ### Hosting on Github Packages
 If you decided to use Github Packages to host your images, you need to create a Personal Access Token that will let AWS pull your Github images. To do that, head to Github, select the global settings panel (n.b. not the repository settings), click on "developer settings", "personal access tokens", and finally "generate new token". Under "scopes", you only need to give it permissions to read and write packages. Click on create and the token will be displayed. Take a note of the token as it will disappear once you navigate away. 
